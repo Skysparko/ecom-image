@@ -10,6 +10,7 @@ app.use(express.json());
 app.use(express.static("content"));
 app.use(express.urlencoded({ extended: false }));
 
+//routes
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/product", productRoutes);
 
