@@ -40,4 +40,14 @@ const isSeller = (req, res, next) => {
   }
 };
 
-module.exports = { isAuthorized, isSeller };
+const isBuyer = (req, res, next) => {
+  if (!req.user.isSeller) {
+    next();
+  } else {
+    return res.status(401).json({
+      err: "You are not a buyer",
+    });
+  }
+};
+
+module.exports = { isAuthorized, isSeller, isBuyer };

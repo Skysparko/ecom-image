@@ -1,7 +1,7 @@
 const { createDB } = require("../config/db");
 const { DataTypes } = require("sequelize");
 
-const User = createDB.define("userModel", {
+const User = createDB.define("usersDB", {
   id: {
     autoIncrement: true,
     type: DataTypes.INTEGER,

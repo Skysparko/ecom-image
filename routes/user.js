@@ -41,7 +41,7 @@ router.post("/signup", async (req, res) => {
 
     const createdUser = await User.create(userData);
 
-    return res.status(201).send(createdUser);
+    return res.status(201).json({ createdUser });
   } catch (error) {
     console.log(">>>>", error);
     return res.status(500).send(error);
@@ -69,7 +69,7 @@ router.post("/signin", async (req, res) => {
   }
 
   const payload = { user: { id: existingUser.id } };
-  const bearerToken =  jwt.sign(payload, "secret Message", {
+  const bearerToken = jwt.sign(payload, "secret Message", {
     expiresIn: 360000,
   });
 
@@ -77,6 +77,7 @@ router.post("/signin", async (req, res) => {
 
   return res.status(200).json({
     bearerToken,
+    isSeller: existingUser.isSeller,
   });
 });
 
