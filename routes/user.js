@@ -9,6 +9,63 @@ const {
 } = require("../utils/validators");
 const jwt = require("jsonwebtoken");
 
+/**
+ *@swagger
+ * components:
+ *   schemas:
+ *     User:
+ *       type: object
+ *       required:
+ *         - name
+ *         - email
+ *         - password
+ *         - isSeller
+ *       properties:
+ *         id:
+ *           type: INTEGER
+ *           description: auto increament id
+ *         name:
+ *           type: STRING
+ *           description: Name of User
+ *         email:
+ *           type: STRING
+ *           description: Email of User
+ *         password:
+ *           type: STRING
+ *           description: Password of User
+ *         isSeller:
+ *           type: BOOLEAN
+ *           description: To check user is seller or buyer
+ *       example:
+ *         name: skysparko
+ *         email: skysparko@gmail.com
+ *         password: Skysparko*&2432
+ *         isSeller: true
+ *
+ */
+
+/**
+ * @swagger
+ * /api/v1/user/signup:
+ *   post:
+ *     summary: Create a new user
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
+ *     responses:
+ *       201:
+ *         description: The user was successfully created
+ *       403:
+ *         description: There was already an existing user with the same email
+ *       400:
+ *         description: Validation failed for the name, email or password
+ *       500:
+ *         description: Some server error
+ */
+
 router.post("/signup", async (req, res) => {
   try {
     const { name, email, password, isSeller } = await req.body;
