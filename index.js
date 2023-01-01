@@ -1,7 +1,7 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const { connectDB } = require("./config/db");
-const PORT = 9785;
 const userRoutes = require("./routes/user");
 const productRoutes = require("./routes/product");
 
@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/product", productRoutes);
 
-app.listen(PORT, () => {
-  console.log("app live on http://localhost:" + PORT);
+app.listen(process.env.PORT, () => {
+  console.log("app live on ", process.env.API);
   connectDB();
 });

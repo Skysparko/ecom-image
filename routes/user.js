@@ -41,7 +41,7 @@ router.post("/signup", async (req, res) => {
 
     const createdUser = await User.create(userData);
 
-    return res.status(201).json({ createdUser });
+    return res.status(201).json({ message: "user has been created" });
   } catch (error) {
     console.log(">>>>", error);
     return res.status(500).send(error);
